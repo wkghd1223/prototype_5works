@@ -236,7 +236,8 @@ public class CameraFragment extends Fragment
             if(mMode == 1) Core.flip(matInput, matInput, 1); // 전면카메라 시 뒤집힘 현상 때문에 뒤집어 준다.
 
             Core.rotate(matInput, matInput, Core.ROTATE_90_CLOCKWISE); // 전면카메라 회전현상
-            detect(cascadeClassifier_face,cascadeClassifier_eye, matInput.getNativeObjAddr(), matResult.getNativeObjAddr(), lenze); // 얼굴 및 얼굴 검출 코드
+            if(!lenze.equals("default_lenze"))
+                detect(cascadeClassifier_face,cascadeClassifier_eye, matInput.getNativeObjAddr(), matResult.getNativeObjAddr(), lenze); // 얼굴 및 얼굴 검출 코드
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

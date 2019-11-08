@@ -52,7 +52,7 @@ public class SerachFragment extends Fragment
         mWebSettings.setJavaScriptEnabled(true);
 //
 //        androidx.appcompat.widget.SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
-//        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, words);
+//        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, words);
 //        searchAutoComplete.setAdapter(adapter);
 
         mWebView.loadUrl("https://www.google.com/");
