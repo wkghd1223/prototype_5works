@@ -55,7 +55,6 @@ public class SerachFragment extends Fragment
 //        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, words);
 //        searchAutoComplete.setAdapter(adapter);
 
-        mWebView.loadUrl("https://www.google.com/");
 
         return root;
     }
@@ -69,6 +68,7 @@ public class SerachFragment extends Fragment
 
     @Override
     public boolean onQueryTextSubmit(String s) {
+
         mWebView.loadUrl("https://www.google.com/search?q="+s);
         return true;
     }
