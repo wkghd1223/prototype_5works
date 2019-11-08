@@ -15,7 +15,7 @@ public class CameraViewModel extends ViewModel implements View.OnClickListener {
     private MutableLiveData<String> mText;
     public CameraViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("lenze.jpg");
+        mText.setValue("default_lenze");
     }
     public LiveData<String> getText() {
         return mText;

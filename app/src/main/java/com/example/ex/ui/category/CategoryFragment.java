@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
+// 지금 안씀
 import com.example.ex.R;
 
 public class CategoryFragment extends Fragment {

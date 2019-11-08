@@ -3,8 +3,10 @@ package com.example.ex.ui.camera;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,9 +15,9 @@ import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -33,15 +35,19 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.Semaphore;
 
 public class CameraFragment extends Fragment
-        implements CameraBridgeViewBase.CvCameraViewListener2 {
+        implements CameraBridgeViewBase.CvCameraViewListener2 , View.OnClickListener{
 
     private CameraViewModel cameraviewModel;
     private Context context = getContext();
@@ -62,6 +68,8 @@ public class CameraFragment extends Fragment
 
     public long cascadeClassifier_face = 0;
     public long cascadeClassifier_eye = 0;
+
+    final String folder = "5works";
 
     static final int PERMISSIONS_REQUEST_CODE = 1000;
     String[]  PERMISSIONS = {"android.permission.CAMERA",
@@ -180,11 +188,16 @@ public class CameraFragment extends Fragment
         mOpenCvCameraView.setCameraIndex(mMode); // front-camera(1),  back-camera(0)
         mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
 
+        ImageButton capture = root.findViewById(R.id.imageButton);
+        capture.setOnClickListener(this);
+
         Button defult_btn = root.findViewById(R.id.default_lenze);
         Button lenze1 = root.findViewById(R.id.lenze1_jpg);
+
         defult_btn.setOnClickListener(cameraviewModel);
         lenze1.setOnClickListener(cameraviewModel);
 
+        // lenze변수의 값을 버튼의 눌림에따라 바뀌게한다.
         cameraviewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -223,8 +236,7 @@ public class CameraFragment extends Fragment
             if(mMode == 1) Core.flip(matInput, matInput, 1); // 전면카메라 시 뒤집힘 현상 때문에 뒤집어 준다.
 
             Core.rotate(matInput, matInput, Core.ROTATE_90_CLOCKWISE); // 전면카메라 회전현상
-//            if(!lenze.equals("default_lenze"))
-                detect(cascadeClassifier_face,cascadeClassifier_eye, matInput.getNativeObjAddr(), matResult.getNativeObjAddr(), lenze); // 얼굴 및 얼굴 검출 코드
+            detect(cascadeClassifier_face,cascadeClassifier_eye, matInput.getNativeObjAddr(), matResult.getNativeObjAddr(), lenze); // 얼굴 및 얼굴 검출 코드
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -233,6 +245,44 @@ public class CameraFragment extends Fragment
         return matResult;
     }
 
+    //캡쳐버튼의 리스너 구현
+    @Override
+    public void onClick(View view) {
+        try {
+            getWriteLock();
+
+            File path = new File(Environment.getExternalStorageDirectory(),folder);
+            if(!path.exists()){
+                path.mkdirs();
+            }
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+            // 년월일시분초
+            Date currentTime_1 = new Date();
+            String dateString = formatter.format(currentTime_1);
+
+            File file = new File(path, dateString + ".jpg");
+
+            String filename = file.toString();
+
+            Imgproc.cvtColor(matResult, matResult, Imgproc.COLOR_BGR2RGBA);
+            boolean ret  = Imgcodecs.imwrite( filename, matResult);
+
+            if ( ret )
+                Log.d(TAG, "SUCESS");
+            else
+                Log.d(TAG, "FAIL");
+
+            Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            mediaScanIntent.setData(Uri.fromFile(file));
+            context = getContext();
+            context.sendBroadcast(mediaScanIntent);
+            Toast.makeText(getActivity(),"사진을 캡쳐했습니다.",Toast.LENGTH_LONG).show();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        releaseWriteLock();
+    }
     // 퍼미션 함수들
     private boolean hasPermissions(String[] permissions) {
         int result;

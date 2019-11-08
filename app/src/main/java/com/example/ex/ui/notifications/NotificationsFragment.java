@@ -1,5 +1,5 @@
 package com.example.ex.ui.notifications;
-
+// 지금 안씀
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
