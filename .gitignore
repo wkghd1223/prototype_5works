@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
+/src/main/cpp/CMakeLists.txt
