@@ -10,5 +10,6 @@
 .DS_Store
 /build
 /captures
+/src/main/cpp/CMakeList.txt
 .externalNativeBuild
 .cxx
