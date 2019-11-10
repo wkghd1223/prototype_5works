@@ -16,8 +16,7 @@ public class CategoryViewModel extends ViewModel implements View.OnClickListener
     private MutableLiveData<String> mText;
     public CategoryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("원하는 카테고리를 선택해 주세요");
-
+//        mText.setValue("원하는 카테고리를 선택해 주세요");
     }
 
     public LiveData<String> getText() {
