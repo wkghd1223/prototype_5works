@@ -10,7 +10,7 @@
 .DS_Store
 /build
 /captures
-/src/main/cpp/CMakeLists.txt
+/app/src/main/cpp/CMakeLists.txt
 .externalNativeBuild
 .cxx
 /src/main/cpp/CMakeLists.txt
