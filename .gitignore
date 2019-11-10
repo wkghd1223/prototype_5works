@@ -13,3 +13,4 @@
 /src/main/cpp/CMakeList.txt
 .externalNativeBuild
 .cxx
+/src/main/cpp/CMakeLists.txt
