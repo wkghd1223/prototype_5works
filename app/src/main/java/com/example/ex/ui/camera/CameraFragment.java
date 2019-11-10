@@ -141,7 +141,7 @@ public class CameraFragment extends Fragment
             }
         }
     };
-
+    private ImageButton capture;
     private final Semaphore writeLock = new Semaphore(1);
 
     // 세마포어를 aquire, release 하는 함수
@@ -173,11 +173,11 @@ public class CameraFragment extends Fragment
         else  read_cascade_file();
     }
 
-    // 레이아웃 컨텐츠들을 변수와 매핑
+    // 레이아웃 컨텐츠들을 변수와 매핑 및 리스너
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+//        super.onCreate(savedInstanceState);
         cameraviewModel = ViewModelProviders.of(this).get(CameraViewModel.class);
         View root = inflater.inflate(R.layout.camera_fragment, container, false);
 
@@ -188,16 +188,15 @@ public class CameraFragment extends Fragment
         mOpenCvCameraView.setCameraIndex(mMode); // front-camera(1),  back-camera(0)
         mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
 
-        ImageButton capture = root.findViewById(R.id.imageButton);
+        capture = root.findViewById(R.id.imageButton);
         capture.setOnClickListener(this);
-
         Button defult_btn = root.findViewById(R.id.default_lenze);
         Button lenze1 = root.findViewById(R.id.lenze1_jpg);
 
         defult_btn.setOnClickListener(cameraviewModel);
         lenze1.setOnClickListener(cameraviewModel);
 
-        // lenze변수의 값을 버튼의 눌림에따라 바뀌게한다.
+        // lenze변수의 값을 렌즈 버튼의 눌림에따라 바뀌게한다.
         cameraviewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -224,6 +223,7 @@ public class CameraFragment extends Fragment
 
     }
 
+    // 이미지 얼굴 검출및 렌즈합성 함수 사용
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         try {
@@ -236,8 +236,7 @@ public class CameraFragment extends Fragment
             if(mMode == 1) Core.flip(matInput, matInput, 1); // 전면카메라 시 뒤집힘 현상 때문에 뒤집어 준다.
 
             Core.rotate(matInput, matInput, Core.ROTATE_90_CLOCKWISE); // 전면카메라 회전현상
-            if(!lenze.equals("default_lenze"))
-                detect(cascadeClassifier_face,cascadeClassifier_eye, matInput.getNativeObjAddr(), matResult.getNativeObjAddr(), lenze); // 얼굴 및 얼굴 검출 코드
+            detect(cascadeClassifier_face,cascadeClassifier_eye, matInput.getNativeObjAddr(), matResult.getNativeObjAddr(), lenze); // 얼굴 및 얼굴 검출 코드
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
