@@ -1,5 +1,6 @@
 package com.example.ex.ui.user;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -29,7 +30,6 @@ public class UserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
@@ -37,15 +37,16 @@ public class UserFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.user_fragment, container, false);
-//        ibtn = root.findViewById(R.id.CartImage);
-//        ibtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-        productFragment = new ProductFragment();
-        getFragmentManager().beginTransaction().add(R.id.Product_Fragment, productFragment).commit();
+        ibtn = root.findViewById(R.id.CartImage);
+        ibtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View v) {
+//                productFragment = new ProductFragment();
+//                getFragmentManager().beginTransaction().add(R.id.Product_Fragment, productFragment).commit();
+            }
+        });
+//        productFragment = new ProductFragment();
+//        getFragmentManager().beginTransaction().add(R.id.Product_Fragment, productFragment).commit();
 
         return root;
     }

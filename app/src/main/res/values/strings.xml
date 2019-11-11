@@ -8,4 +8,5 @@
     <string name="title_search">Search</string>
     <string name="title_category">Category</string>
     <string name="title_user">User</string>
+    <string name="productname">ProductName</string>
 </resources>
