@@ -1,21 +1,15 @@
-package com.example.ex.ui.user;
+package com.example.ex.ui.user.mypage;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.ex.R;
-
 import java.util.ArrayList;
-
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 

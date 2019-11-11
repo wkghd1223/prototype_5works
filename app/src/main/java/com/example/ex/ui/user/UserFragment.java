@@ -1,8 +1,6 @@
 package com.example.ex.ui.user;
 
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
-
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,19 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ex.R;
 import com.example.ex.User;
+import com.example.ex.ui.user.mypage.CartActivity;
 
-public class UserFragment extends Fragment {
+public class UserFragment extends Fragment implements View.OnClickListener {
 
     private UserViewModel mViewModel;
-    private ImageButton ibtn;
-    private User user= new User("김정현","/res/kim_img.jpg");
+    private ImageButton cartImage;
+    private User user= new User("김정현",R.drawable.kim_img);
     public static UserFragment newInstance() {
         return new UserFragment();
     }
-    ProductFragment productFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -37,25 +37,22 @@ public class UserFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.user_fragment, container, false);
-        ibtn = root.findViewById(R.id.CartImage);
-        ibtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-           public void onClick(View v) {
-//                productFragment = new ProductFragment();
-//                getFragmentManager().beginTransaction().add(R.id.Product_Fragment, productFragment).commit();
-            }
-        });
-//        productFragment = new ProductFragment();
-//        getFragmentManager().beginTransaction().add(R.id.Product_Fragment, productFragment).commit();
 
+        cartImage = root.findViewById(R.id.CartImage);
+        cartImage.setOnClickListener(this);
+
+        ImageView userImage = root.findViewById(R.id.UserImage);
+        TextView userName = root.findViewById(R.id.UserName);
+
+        userImage.setImageResource(user.getUserImage());
+        userName.setText(user.getName());
         return root;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity().getApplicationContext(), CartActivity.class);
+        startActivity(intent);
+    }
 }

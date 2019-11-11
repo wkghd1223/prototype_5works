@@ -5,46 +5,48 @@
     android:id="@+id/user"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="right|left"
     android:orientation="vertical"
     tools:context=".ui.user.UserFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/CartImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_cart" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+        <ImageView
+            android:id="@+id/UserImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
 
-        <TextView
-            android:id="@+id/message"
+        <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center|end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/UserName"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="UserFragment" />
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/CartImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:src="@drawable/ic_cart" />
+        </LinearLayout>
+
     </LinearLayout>
-
-    <fragment
-        android:id="@+id/Product_Fragment"
-        android:name="com.example.ex.ui.user.ProductFragment"
-        android:layout_width="match_parent"
-        android:layout_height="615dp" />
 
 </LinearLayout>

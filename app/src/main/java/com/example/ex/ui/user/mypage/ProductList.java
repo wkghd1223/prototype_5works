@@ -1,4 +1,4 @@
-package com.example.ex.ui.user;
+package com.example.ex.ui.user.mypage;
 
 import android.graphics.drawable.Drawable;
 
