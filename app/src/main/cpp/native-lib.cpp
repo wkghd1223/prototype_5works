@@ -78,7 +78,7 @@ float resize(Mat img_src, Mat &img_resize, int resize_width){
 // 얼굴을 먼저 검출한 후 검출된 얼굴에서 눈을 검출한다.
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_ex_ui_camera_CameraFragment_detect(JNIEnv *env, jobject thiz,
+Java_com_example_prototype_15works_ui_camera_CameraFragment_detect(JNIEnv *env, jobject thiz,
                                                     jlong cascadeClassifier_face,
                                                     jlong cascadeClassifier_eye,
                                                     jlong mat_addr_input, jlong mat_addr_result,
@@ -164,7 +164,7 @@ Java_com_example_ex_ui_camera_CameraFragment_detect(JNIEnv *env, jobject thiz,
 // .xml 파일을 가져와 CascadeClassifier객체로 로딩해주는 함수
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_com_example_ex_ui_camera_CameraFragment_loadCascade(JNIEnv *env, jobject thiz,
+Java_com_example_prototype_15works_ui_camera_CameraFragment_loadCascade(JNIEnv *env, jobject thiz,
                                                          jstring cascade_file_name) {
     const char *nativeFileNameString = env->GetStringUTFChars(cascade_file_name, 0);
     string baseDir("/storage/emulated/0/");

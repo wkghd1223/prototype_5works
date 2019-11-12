@@ -7,44 +7,44 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.ex.ui.home.HomeFragment"
+        android:name="com.example.prototype_5works.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.ex.ui.dashboard.DashboardFragment"
+        android:name="com.example.prototype_5works.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_category"
-        android:name="com.example.ex.ui.category.CategoryFragment"
+        android:name="com.example.prototype_5works.ui.category.CategoryFragment"
         android:label="@string/title_category"
         tools:layout="@layout/category_fragment" />
 
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.ex.ui.notifications.NotificationsFragment"
+        android:name="com.example.prototype_5works.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_user"
-        android:name="com.example.ex.ui.user.UserFragment"
+        android:name="com.example.prototype_5works.ui.user.UserFragment"
         android:label="@string/title_user"
         tools:layout="@layout/user_fragment" />
 
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="com.example.ex.ui.camera.CameraFragment"
+        android:name="com.example.prototype_5works.ui.camera.CameraFragment"
         android:label="@string/title_camera"
         tools:layout="@layout/camera_fragment" />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.ex.ui.serach.SerachFragment"
+        android:name="com.example.prototype_5works.ui.serach.SerachFragment"
         android:label="@string/title_search"
         tools:layout="@layout/serach_fragment" />
 </navigation>
