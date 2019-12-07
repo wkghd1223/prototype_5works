@@ -44,7 +44,7 @@ public class CategoryFragment extends Fragment {
         categoryViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                mWebView.loadUrl("https://ec2-13-125-251-84.ap-northeast-2.compute.amazonaws.com/category?category="+s);
+                mWebView.loadUrl("http://ec2-13-125-251-84.ap-northeast-2.compute.amazonaws.com/category?category="+s);
             }
         });
         return root;

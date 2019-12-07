@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
         mWebSettings = mWebView.getSettings();
         mWebSettings.setJavaScriptEnabled(true);
 
-        mWebView.loadUrl("https://ec2-13-125-251-84.ap-northeast-2.compute.amazonaws.com/");
+        mWebView.loadUrl("http://ec2-13-125-251-84.ap-northeast-2.compute.amazonaws.com");
         return root;
     }
 }

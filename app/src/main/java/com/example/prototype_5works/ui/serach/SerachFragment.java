@@ -65,7 +65,7 @@ public class SerachFragment extends Fragment
     @Override
     public boolean onQueryTextSubmit(String s) {
 
-        mWebView.loadUrl("https://ec2-13-125-251-84.ap-northeast-2.compute.amazonaws.com/search?query="+s);
+        mWebView.loadUrl("http://ec2-13-125-251-84.ap-northeast-2.compute.amazonaws.com/search?query="+s);
         return true;
     }
 
