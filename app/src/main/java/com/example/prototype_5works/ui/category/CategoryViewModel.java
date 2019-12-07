@@ -22,8 +22,8 @@ public class CategoryViewModel extends ViewModel implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.button) mText.setValue("베스트");
-        else if (view.getId() == R.id.button2) mText.setValue("브랜드");
-        else if(view.getId() == R.id.button3) mText.setValue("스타일");
+        if(view.getId() == R.id.button) mText.setValue("best");
+        else if (view.getId() == R.id.button2) mText.setValue("brand");
+        else if(view.getId() == R.id.button3) mText.setValue("style");
     }
 }
